@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Rep">
+  <meta name="description" content="Rep – il tuo diario di allenamento: schede, pesi, progressi.">
+  <title>Rep – Diario palestra</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="preload" href="fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // applica il tema prima del primo disegno (niente flash di colore)
+    try { document.documentElement.dataset.theme = localStorage.getItem('rep-theme') || 'volt'; } catch (e) {}
+    document.documentElement.classList.add('splashing');
+    (function () {
+      var h = document.documentElement, ok = function () { h.classList.add('fonts-ok'); };
+      setTimeout(ok, 700); // al massimo si aspetta poco
+      try { document.fonts.load('900 100px "Barlow Condensed"').then(ok, ok); } catch (e) { ok(); }
+    })();
+  </script>
+</head>
+<body>
+  <div id="splash" aria-hidden="true"><div class="splash-word"><span>R</span><span>E</span><span>P</span></div></div>
+  <main id="app"></main>
+
+  <div id="active-bar" hidden></div>
+  <div id="rest-banner" hidden></div>
+
+  <nav id="tabbar">
+    <a href="#/" data-tab="home" data-action="go" data-to="#/">
+      <svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
+      <span data-i18n>Allena</span>
+    </a>
+    <a href="#/history" data-tab="history" data-action="go" data-to="#/history">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+      <span data-i18n>Storico</span>
+    </a>
+    <a href="#/stats" data-tab="stats" data-action="go" data-to="#/stats">
+      <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+      <span data-i18n>Progressi</span>
+    </a>
+    <a href="#/body" data-tab="body" data-action="go" data-to="#/body">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M5 9.5h14M12 9.5v5M12 14.5l-3.5 6.5M12 14.5l3.5 6.5"/></svg>
+      <span data-i18n>Corpo</span>
+    </a>
+    <a href="#/tools" data-tab="tools" data-action="go" data-to="#/tools">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>
+      <span data-i18n>Altro</span>
+    </a>
+  </nav>
+
+  <div id="modal-root"></div>
+  <div id="toast" hidden></div>
+
+  <script type="module" src="js/boot.js"></script>
+</body>
+</html>
